@@ -1,6 +1,11 @@
 @extends('app')
 
 @section('content')
+
+<div class="container">
+	<a href="{{ url('/') }}" class="btn btn-outline-dark mt-3">&#128072; Subir otro archivo</a>
+</div>
+
 <h1 class="display-4 lead mt-3 text-center">Asignación de memoria</h1>
 <h4 class="lead mt-3 text-center">Asignación en memoria RAM</h4>
 <div class="container mt-5">
@@ -63,7 +68,7 @@
 
 			<input type="hidden" name="content" value="{{$fread}}">
 
-			<button type="submit" class="btn btn-primary mt-3">Cambiar valor</button>
+			<button type="submit" class="btn btn-outline-dark mt-3">Cambiar valor</button>
 		</form>
 		
 	</div>
