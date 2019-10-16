@@ -38,9 +38,16 @@
 			@endforeach
 		@endif
 	</div>
+</div>
+
+<div class=" container mt-5 mb-5 text-center">
+	<p class="text-justify">
+		<b>El archivo contiene el siguiente texto:</b> {{$fread}}
+	</p>
+</div>
 
 
-	<div class="mt-5 pt-4 mb-2 pb-2">
+	<div class="mt-5 pt-4 mb-2 pb-2 text-center">
 		<h4 class="lead">¿Quieres remover y asignar un nuevo valor?</h4>
 	</div>
 
@@ -50,9 +57,9 @@
 			@csrf
 			<div class="form-group mb-2">
 				<select id="inputState" class="form-control mt-4" name="ram_or_virtual">
-					<option value="0">¿En dónde?</option>
+					{{-- <option value="0">¿En dónde?</option> --}}
 					<option value="ram">Memoria RAM</option>
-					<option value="virtual">Memoria Virtual</option>
+					{{-- <option value="virtual">Memoria Virtual</option> --}}
 				</select>
 			</div>
 
@@ -73,11 +80,126 @@
 		
 	</div>
 
-	<div class="mt-5">
-		<p class="text-justify">
-			<b>El archivo contiene el siguiente texto:</b> {{$fread}}
-		</p>
+	
+
+
+	<div class="mt-5 pt-4 mb-2 pb-2 text-center">
+		<h4 class="lead">Mover de la RAM a la virtual</h4>
 	</div>
+
+
+	<div class="mt-2 pt-5 align-item-center d-flex justify-content-center text-center">
+
+		<form class="form-inline" method="POST" action="{{ route('memory.newValueInvirtualRam') }}">
+			@csrf
+			<div class="form-group mb-2">
+				<select id="inputState" class="form-control mt-4" name="ram_or_virtual">
+					{{-- <option value="0">¿En dónde?</option> --}}
+					<option value="ram">Memoria RAM</option>
+					{{-- <option value="virtual">Memoria Virtual</option> --}}
+				</select>
+			</div>
+
+			<div class="form-group mx-sm-3 mb-2">
+				<label for="inputPassword2" > Posición en RAM </label>
+				<input type="number" style="min-width: 100%;" min="0" max="127" class="form-control" name="position2" id="inputPassword2" placeholder="0">
+			</div>
+
+			<div class="form-group mx-sm-3 mb-2">
+				<label for="newValueInvirtualRam" > Posición en Virtual </label>
+				<input type="text" style="min-width: 100%;" maxlength="128" class="form-control" name="newValueInvirtualRam" id="newValueInvirtualRam" placeholder="0">
+			</div>
+
+			<input type="hidden" name="content2" value="{{$fread}}">
+
+			<button type="submit" class="btn btn-outline-dark mt-3">Cambiar valor</button>
+		</form>
+		
+	</div>
+
+
+
+
+	<div class="mt-5 pt-4 mb-2 pb-2 text-center">
+		<h4 class="lead">Obtener un valor en RAM o en virtual</h4>
+	</div>
+
+
+	<div class="mt-2 pt-5 align-item-center d-flex justify-content-center text-center">
+
+		<form class="form-inline" method="POST" action="{{ route('memory.find') }}">
+			@csrf
+			<div class="form-group mb-2">
+				<select id="inputState" class="form-control mt-4" name="ram_or_virtual2">
+					{{-- <option value="0">¿En dónde?</option>  --}}
+					<option value="ram">Memoria RAM</option>
+					<option value="virtual">Memoria Virtual</option>
+				</select>
+			</div>
+
+			<div class="form-group mx-sm-3 mb-2">
+				<label for="inputPassword2" > Ingresa la posición </label>
+				<input type="number" style="min-width: 100%;" min="0" max="127" class="form-control" name="position3" id="inputPassword2" placeholder="0">
+			</div>
+
+			<input type="hidden" name="content3" value="{{$fread}}">
+
+			<button type="submit" class="btn btn-outline-dark mt-3">Ver contenido</button>
+		</form>
+		
+	</div>
+
+
+	<div class="mt-5 pt-4 mb-2 pb-2 text-center">
+		<h4 class="lead">Liberar todo el espacio de memoria virtual</h4>
+		<p>Presiona en el botón rojo para liberar toda la memoria virtual</p>
+	</div>
+
+
+	<div class="mt-2 pt-5 align-item-center d-flex justify-content-center text-center">
+
+		<form class="form-inline" method="POST" action="{{ route('memory.virtualclear') }}">
+			@csrf
+
+
+			<input type="hidden" name="content" value="{{$fread}}">
+
+			<button type="submit" class="btn btn-danger mt-3">Limpiar toda la memoria virtual</button>
+		</form>
+		
+	</div>
+
+	{{-- <div class="mt-5 pt-4 mb-2 pb-2">
+		<h4 class="lead">¿Quieres conocer el valor de una posición X?</h4><br><br>
+	</div>
+
+	
+
+	<div class="mt-2 pt-5 align-item-center d-flex justify-content-center text-center">
+
+		<form class="form-inline" method="POST" action="{{ route('memory.show') }}">
+			@csrf
+			<div class="form-group mb-2">
+				<select id="inputState" class="form-control mt-4" name="ram_or_virtual">
+					<option value="0">¿En dónde?</option>
+					<option value="ram">Memoria RAM</option>
+					<option value="virtual">Memoria Virtual</option>
+				</select>
+			</div>
+
+			<div class="form-group mx-sm-3 mb-2">
+				<label for="inputPassword2" > Posición </label>
+				<input type="number" style="min-width: 100%;" min="0" max="127" class="form-control" name="position" id="inputPassword2" placeholder="0">
+			</div>
+
+			<input type="hidden" name="content" value="{{$fread}}">
+
+			<button type="submit" class="btn btn-outline-dark mt-3">Consultar</button>
+		</form>
+		
+	</div>
+
+	 --}}
 </div>
 
 
